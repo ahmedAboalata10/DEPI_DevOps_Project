@@ -1,0 +1,14 @@
+---
+- name: Installing Devops tools
+  hosts: EC2
+  become: true
+
+
+  roles:
+    - role: 'jenkins_role'
+    
+    - role: 'Docker_role'
+
+
+  
+
