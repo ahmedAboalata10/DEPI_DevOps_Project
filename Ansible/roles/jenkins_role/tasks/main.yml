@@ -1,44 +1,60 @@
 ---
-# tasks file for jenkins_role
-
-
-
-- name: Remove any existing Jenkins repository configuration
-  file:
-    path: /etc/apt/sources.list.d/jenkins.list
-    state: absent
-  ignore_errors: yes
-
-- name: Clean the local repository and package cache
-  command: apt-get clean
- 
-
-
-- name: Install Java
+ # 1. Update apt package manager and install required packages
+- name: Update apt and install Java
   apt:
-    name: openjdk-11-jdk
+    name: "{{ item }}"
     state: present
+    update_cache: yes
+  loop:
+    - openjdk-11-jdk   # Jenkins requires Java to run
+    - apt-transport-https
+    - ca-certificates
+    - gnupg
 
+# 2. Download Jenkins repository GPG key and place it in a trusted directory
+- name: Download Jenkins repository GPG key
+  shell:
+    wget -O /usr/share/keyrings/jenkins-keyring.asc \
+    https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key 
 
-    # Install Jenkins
- 
-- name: Add Jenkins repository key
-  apt_key:
-    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
-    state: present
-
-- name: Add Jenkins repository
-  apt_repository:
-    repo: deb http://pkg.jenkins.io/debian-stable binary/
-    state: present
-
+# 3. Add Jenkins apt repository with signed-by option
+- name: Add Jenkins apt repository
+  shell:
+    echo 'deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ 
+    https://pkg.jenkins.io/debian-stable binary/' | tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null 
+# 4. Install Jenkins
 - name: Install Jenkins
   apt:
     name: jenkins
     state: present
 
-- name: Start and enable Jenkins service
+
+# 5. Start and enable Jenkins service
+- name: Ensure Jenkins is started and enabled
   systemd:
     name: jenkins
     state: started
     enabled: yes
+
+# 6. (Optional) Add Jenkins to Docker group if Docker is installed
+- name: Check if Docker is installed
+  command: which docker
+  register: docker_installed
+  ignore_errors: true 
+
+- name: Add Jenkins user to the Docker group
+  user:
+    name: jenkins
+    groups: docker
+    append: yes
+  when: docker_installed.rc == 0
+
+
+    # 8. Print Jenkins initial admin password
+- name: Show Jenkins initial admin password
+  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+  register: jenkins_admin_password
+
+- debug:
+    msg: "Jenkins initial admin password: {{ jenkins_admin_password.stdout }}"
