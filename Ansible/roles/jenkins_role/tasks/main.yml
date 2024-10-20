@@ -26,3 +26,12 @@
 # Start Jenkins service
 - name: Start and enable Jenkins
   shell: systemctl enable --now jenkins
+
+# Get Jenkins initial admin password
+- name: Get Jenkins initial admin password
+  shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+  register: jenkins_admin_password
+
+# Debug the retrieved password
+- debug:
+    msg: "Jenkins initial admin password: {{ jenkins_admin_password.stdout }}"
