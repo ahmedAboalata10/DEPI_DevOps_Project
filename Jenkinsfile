@@ -40,7 +40,13 @@ pipeline {
         stage('Deploy on EC2') {
             steps {
                 script { 
-            			    sh "docker stop $(docker ps -q) && docker rm $(docker ps -aq)"	
+            		  sh '''
+	                        echo "Stopping all active Docker containers..."
+	                        docker stop $(docker ps -q) || echo "No active containers to stop."
+	                        
+	                        echo "Removing all stopped Docker containers..."
+	                        docker rm $(docker ps -aq) 
+	                    '''	
 				    sh "docker run -d -p 5000:5000 ${imageName}:${BUILD_NUMBER}"
                     
                 }
