@@ -3,7 +3,7 @@
 - name: Ensure OpenJDK 11 and required packages are installed
   shell: |
     apt-get update
-    apt-get install -y openjdk-11-jdk apt-transport-https ca-certificates gnupg
+    apt-get install -y openjdk-17-jdk apt-transport-https ca-certificates gnupg
 
 # Download the new Jenkins GPG key and save it to keyring
 - name: Add Jenkins GPG key
