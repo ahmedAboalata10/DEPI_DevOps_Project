@@ -4,7 +4,7 @@ pipeline {
     
     environment {
         dockerHubCredentialsID	    = 'DockerHub'  		    			// DockerHub credentials ID.
-        imageName   		    = 'engyousry/python-app'     			// DockerHub repo/image 
+        imageName   		    = 'ahmedAboalata10/python-app'     			// DockerHub repo/image 
 
     }
      stages {
