@@ -40,7 +40,7 @@ pipeline {
         stage('Deploy on EC2') {
             steps {
                 script { 
-            
+            			    sh "docker stop $(docker ps -q) && docker rm $(docker ps -aq)"	
 				    sh "docker run -d -p 5000:5000 ${imageName}:${BUILD_NUMBER}"
                     
                 }
