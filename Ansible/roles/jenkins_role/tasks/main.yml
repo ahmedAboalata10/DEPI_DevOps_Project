@@ -27,6 +27,11 @@
 - name: Start and enable Jenkins
   shell: systemctl enable --now jenkins
 
+- name: Wait for Jenkins to initialize
+  wait_for:
+    path: /var/lib/jenkins/secrets/initialAdminPassword
+    timeout: 60
+
 # Get Jenkins initial admin password
 - name: Get Jenkins initial admin password
   shell: cat /var/lib/jenkins/secrets/initialAdminPassword
