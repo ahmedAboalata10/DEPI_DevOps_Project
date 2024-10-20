@@ -138,7 +138,7 @@ def show_project_info():
                 <div class="container">
                   <ul class="lists-left">
                     <li>Fatma Elzahraa Ali</li>
-                    <li>Mohamed Yousry</li>
+                    <li>Mohammed Yousry</li>
                     <li>Asmaa Tarek</li>
                   </ul>
                   <ul class="lists-right">
