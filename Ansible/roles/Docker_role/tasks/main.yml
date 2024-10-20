@@ -25,7 +25,7 @@
 
 - name: Update apt package index after adding Docker repo
   shell:
-     "apt update && apt upgrade"
+     "apt update && apt upgrade -y"
 
 - name: Install Docker
   apt:
