@@ -144,7 +144,7 @@ def show_project_info():
                   <ul class="lists-right">
                     <li>Ahmed Abou Elata</li>
                     <li>Esraa Eissa</li>
-                    <li>Ebrahim Abdelmonem</li>
+                  
                   </ul>
                 </div>
               </div>
