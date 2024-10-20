@@ -13,8 +13,11 @@ resource "aws_instance" "depi_instance" {
               echo "<html><head><title>DEPI Team</title></head><body><h1>Hello DEPI Team</h1></body></html>" | sudo tee /var/www/html/index.html
               sudo service nginx start
               EOF
-
+  root_block_device {
+    volume_size = 35    
+    volume_type = "gp2" #why  # General Purpose SSD
+  }
   tags = {
-    Name = "DEPI-Frontend"
+    Name = "DEPI-Frontend"  
   }
 }
