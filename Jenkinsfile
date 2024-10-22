@@ -13,7 +13,9 @@ pipeline {
                 script {
                 	// Navigate to the directory contains Dockerfile
                  	dir('app') {
-                 		        echo "Initializing Unit testing..."
+                 		
+                                echo "Running Unit testing..."
+                                sh "pip install pytest"
                                 sh "pytest test_app.py "
                     	}
                 }
