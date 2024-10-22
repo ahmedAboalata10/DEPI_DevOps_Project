@@ -65,13 +65,26 @@ pipeline {
             }
         }
     }
-
-    post {
-        success {
-            echo "${JOB_NAME}-${BUILD_NUMBER} pipeline succeeded"
-        }
-        failure {
-            echo "${JOB_NAME}-${BUILD_NUMBER} pipeline failed"
-        }
+post {
+    success {
+        mail bcc: '', 
+            body: 'Jenkins pipeline was a success!', 
+            cc: 'mido.aaa27@gmail.com, fatma.elzahraa.ali.75@gmail.com, asmaatarek06@gmail.com', 
+            from: '', 
+            replyTo: '', 
+            subject: '${JOB_NAME}-${BUILD_NUMBER} pipeline succeeded', 
+            to: 'Mohammed.yousry510@gmail.com'
+        echo "${JOB_NAME}-${BUILD_NUMBER} pipeline succeeded"
+    }
+    failure {
+        mail bcc: '', 
+            body: 'Jenkins pipeline failed!', 
+            cc: 'mido.aaa27@gmail.com, fatma.elzahraa.ali.75@gmail.com, asmaatarek06@gmail.com', 
+            from: '', 
+            replyTo: '', 
+            subject: '${JOB_NAME}-${BUILD_NUMBER} pipeline failed', 
+            to: 'Mohammed.yousry510@gmail.com'
+        echo "${JOB_NAME}-${BUILD_NUMBER} pipeline failed"
     }
 }
+
