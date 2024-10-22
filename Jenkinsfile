@@ -72,7 +72,7 @@ post {
             cc: 'mido.aaa27@gmail.com, fatma.elzahraa.ali.75@gmail.com, asmaatarek06@gmail.com', 
             from: '', 
             replyTo: '', 
-            subject: '${JOB_NAME}-${BUILD_NUMBER} pipeline succeeded', 
+            subject: 'Depi DevOps Prject pipeline succeeded', 
             to: 'Mohammed.yousry510@gmail.com'
         echo "${JOB_NAME}-${BUILD_NUMBER} pipeline succeeded"
     }
@@ -82,7 +82,7 @@ post {
             cc: 'mido.aaa27@gmail.com, fatma.elzahraa.ali.75@gmail.com, asmaatarek06@gmail.com', 
             from: '', 
             replyTo: '', 
-            subject: '${JOB_NAME}-${BUILD_NUMBER} pipeline failed', 
+            subject: 'Depi DevOps Prject pipeline failed', 
             to: 'Mohammed.yousry510@gmail.com'
         echo "${JOB_NAME}-${BUILD_NUMBER} pipeline failed"
     }
