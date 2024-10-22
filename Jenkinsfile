@@ -15,7 +15,7 @@ pipeline {
                  	dir('app') {
                  		
                                 echo "Running Unit testing..."
-                                sh "pip install pytest"
+                                sh "pip3 install pytest"
                                 sh "pytest test_app.py "
                     	}
                 }
