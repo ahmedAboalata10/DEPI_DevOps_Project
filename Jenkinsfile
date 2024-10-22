@@ -8,6 +8,17 @@ pipeline {
 
     }
      stages {
+        stage('Unit Testing') {
+            steps {
+                script {
+                	// Navigate to the directory contains Dockerfile
+                 	dir('app') {
+                 		        echo "Initializing Unit testing..."
+                                sh "pytest test_app.py "
+                    	}
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
