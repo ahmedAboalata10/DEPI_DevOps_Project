@@ -87,4 +87,4 @@ post {
         echo "${JOB_NAME}-${BUILD_NUMBER} pipeline failed"
     }
 }
-
+}
