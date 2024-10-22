@@ -1,6 +1,6 @@
 ---
 # Install Jenkins prerequisites
-- name: Ensure OpenJDK 11 and required packages are installed
+- name: Ensure OpenJDK 17 and required packages are installed
   shell: |
     apt-get update
     apt-get install -y openjdk-17-jdk apt-transport-https ca-certificates gnupg
