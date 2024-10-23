@@ -36,7 +36,6 @@ docker run -p 5000:5000 flask_app
 - **push it to DockerHub**
   - push your image to Docker Hub
     - create a new repository in DockerHub.
-    - tag the image you want to push by ``` docker tag ```.
     - push the image by ```docker push```.
 4. ### Automating CI/CD with Jenkins
 
