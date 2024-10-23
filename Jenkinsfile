@@ -34,7 +34,7 @@ pipeline {
         stage('push Docker Image') {
             steps {
                 script {
-                	// Navigate to the directory contains Dockerfile
+                	// Navigate to the directory containing Dockerfile
                  	dir('app') {
                                 withCredentials([usernamePassword(credentialsId: "${dockerHubCredentialsID}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                                 sh "docker login -u ${USERNAME} -p ${PASSWORD}"
